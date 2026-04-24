@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Fraud Detection System</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙 Dark</button>
+        
+        <header>
+            <h1>🔐 FRAUD DETECTOR PRO</h1>
+            <p class="subtitle">Real-time Credit Card Transaction Analysis System</p>
+        </header>
+
+        <div class="main-grid">
+            <!-- Form Section -->
+            <div class="form-section">
+                <h2>📝 Analyze Transaction</h2>
+
+                <div class="form-group">
+                    <label>💰 Card Amount ($)</label>
+                    <input type="number" id="amount" placeholder="Enter amount" value="150" min="0" max="100000" step="0.01">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>⏰ Transaction Hour</label>
+                        <input type="number" id="hour" placeholder="0-23" value="14" min="0" max="23">
+                    </div>
+                    <div class="form-group">
+                        <label>🏪 Merchant Type</label>
+                        <select id="merchant_type">
+                            <option value="normal">🟢 Normal</option>
+                            <option value="high_risk">🔴 High Risk</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>📍 Transaction Location</label>
+                    <input type="text" id="location" placeholder="e.g., United States" value="United States">
+                </div>
+
+                <div class="form-group">
+                    <label>🏠 Cardholder Location</label>
+                    <input type="text" id="card_location" placeholder="e.g., United States" value="United States">
+                </div>
+
+                <div class="form-group">
+                    <label>🔒 Verification</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="country_match" checked>
+                            <span>Country Match ✓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-analyze" onclick="analyzeTransaction()">
+                    🚀 ANALYZE NOW
+                </button>
+
+                <!-- Progress Bar -->
+                <div class="progress-container" id="progressContainer" style="display: none;">
+                    <div class="progress-bar" id="progressBar"></div>
+                    <p class="progress-text">Analyzing transaction...</p>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section">
+                <div id="results-placeholder" class="results-hidden">
+                    <p>✨ Submit a transaction to analyze</p>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Results will appear here</p>
+                </div>
+
+                <div id="results-content" style="display: none; width: 100%;">
+                    <div class="status-badge" id="status-badge"></div>
+
+                    <div class="fraud-score-display">
+                        <div class="score-circle" id="score-circle">-</div>
+                        <div class="risk-label" id="risk-label">-</div>
+                        <div class="risk-desc" id="risk-desc">-</div>
+                    </div>
+
+                    <div id="reasons-section"></div>
+
+                    <div class="verdict" id="verdict">-</div>
+
+                    <!-- Copy Report Button -->
+                    <button class="btn-copy" onclick="copyReport()">📋 Copy Report</button>
+
+                    <div style="margin-top: 15px; text-align: center; font-size: 0.85rem; color: var(--text-secondary);">
+                        <span id="timestamp">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transaction History Section -->
+        <div class="history-section" id="historySection" style="display: none;">
+            <h3>📜 Recent Transaction History</h3>
+            <div class="history-controls">
+                <button class="btn-history" onclick="clearHistory()">🗑️ Clear History</button>
+                <button class="btn-history" onclick="exportToCSV()">📥 Export to CSV</button>
+            </div>
+            <div class="table-container">
+                <table id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Amount</th>
+                            <th>Score</th>
+                            <th>Risk</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyBody">
+                        <tr><td colspan="5" style="text-align: center;">No transactions yet</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="stats-section" id="statsSection" style="display: none;">
+            <h3>📊 Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalTransactions">0</div>
+                    <div class="stat-label">Total Transactions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="fraudCount">0</div>
+                    <div class="stat-label">Fraud Detected</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="fraudRate">0%</div>
+                    <div class="stat-label">Fraud Rate</div>
+                </div>
+            </div>
+            <canvas id="fraudChart" style="max-height: 200px; margin-top: 20px;"></canvas>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
