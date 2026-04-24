@@ -33,12 +33,20 @@ A real-time fraud detection system with modern UI and multiple features.
 📁 Project Structure:
 credit-card-fraud-detection/
 ├── app.py           # Flask backend
+
 ├── index.html       # Main UI
+
 ├── style.css        # Styling
+
 ├── script.js        # Frontend logic
+
 ├── requirements.txt # Dependencies
+
 ├── procfile         # production server
+
 └── README.md        # Documentation
+
+
 
 
 
