@@ -2,7 +2,7 @@
 // ========== WITH 3 TYPES OF SOUND (LOW, MEDIUM, HIGH) ==========
 
 // ========== API CONFIGURATION ==========
-const API_URL = 'https://credit-card-fraud-detection-1-m29x.onrender.com';
+const API_URL = 'https://Credit-Card-Fraud-Detection.replit.dev';
 
 // ========== GLOBAL VARIABLES ==========
 let transactionHistory = [];
