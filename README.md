@@ -46,7 +46,7 @@ credit-card-fraud-detection/
 
 └── README.md        # Documentation
 
-
+Direct Link here :  https://credit-card-fraud-detection--mdkamran32386.replit.app/
 
 
 
